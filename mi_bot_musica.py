@@ -99,5 +99,17 @@ if __name__ == '__main__':
     application.add_handler(CommandHandler('alerta', alerta))
     application.add_handler(CommandHandler('ayuda', ayuda))
     
-    print("🤖 Bot iniciado. Presionando Ctrl+C para detenerlo.")
-    application.run_polling()
+    print("🤖 Bot iniciado en modo Webhook.")
+    
+    # Configuración para Render
+    PORT = int(os.environ.get("PORT", 8443))
+    RENDER_URL = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
+    webhook_url = f"https://{RENDER_URL}/{TOKEN}"
+    
+    application.run_webhook(
+        listen="0.0.0.0",
+        port=PORT,
+        url_path=TOKEN,
+        webhook_url=webhook_url
+    )
+
