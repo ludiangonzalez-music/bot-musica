@@ -1,5 +1,5 @@
+import os
 import # Versión 2 - Webhook para Render
-import logging
 import asyncio
 from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
